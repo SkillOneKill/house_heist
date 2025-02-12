@@ -1,4 +1,5 @@
 # house_heist
+![Screenshot 2025-02-12 120356](https://github.com/user-attachments/assets/38d2c24d-1930-4863-9ce0-ffed19cf87eb)
 
 ## Deutsch
 
