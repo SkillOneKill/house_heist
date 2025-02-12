@@ -16,13 +16,13 @@ PerformHttpRequest(versionURL, function(statusCode, newVersion, headers)
         newVersion = newVersion:gsub("%s+", "") -- Entfernt Leerzeichen/Zeilenumbrüche
 
         if newVersion == currentVersion then
-            print("[^2INFO^7] " .. resourceName .. " ist aktuell! (Version: " .. currentVersion .. ")")
+            print("[^2" .. resourceName .. "^7] ✓ Resource is Up to Date - Current Version: " .. currentVersion)
         else
-            print("[^3UPDATE VERFÜGBAR^7] Eine neue Version ist verfügbar: " .. newVersion)
-            print("[^3UPDATE VERFÜGBAR^7] Lade die neueste Version hier herunter: " .. scriptURL)
+            print("[^3" .. resourceName .. "^7] ⚠ UPDATE AVAILABLE - New Version: " .. newVersion)
+            print("[^3" .. resourceName .. "^7] 🔗 Download the latest version here: " .. scriptURL)
         end
     else
-        print("[^1FEHLER^7] Konnte die Version nicht abrufen. Bitte überprüfe die GitHub-URL!")
+        print("[^1" .. resourceName .. "^7] ❌ ERROR - Could not check for updates. Check GitHub URL!")
     end
 end, "GET", "", {})
 
