@@ -1,6 +1,27 @@
 ESX = exports['es_extended']:getSharedObject()
 local lastOpened = {}
 
+local currentVersion = "1.0.2" -- Deine aktuelle Skriptversion
+local resourceName = GetCurrentResourceName() -- Holt den Namen des Skripts
+
+-- GitHub-Repository-URL (Ersetze 'DEIN_GITHUB_USER' und 'DEIN_REPO' mit deinen Daten)
+local versionURL = "https://raw.githubusercontent.com/SkillOneKill/house_heist/main/version.txt"
+
+-- Funktion zum Abrufen der neuesten Version von GitHub
+PerformHttpRequest(versionURL, function(statusCode, newVersion, headers)
+    if statusCode == 200 then
+        newVersion = newVersion:gsub("%s+", "") -- Entfernt unnötige Leerzeichen
+        if newVersion == currentVersion then
+            print("[^2INFO^7] " .. resourceName .. " ist aktuell! (Version: " .. currentVersion .. ")")
+        else
+            print("[^3UPDATE VERFÜGBAR^7] Eine neue Version ist verfügbar: " .. newVersion)
+            print("[^3UPDATE VERFÜGBAR^7] Lade die neueste Version von GitHub herunter!")
+        end
+    else
+        print("[^1FEHLER^7] Konnte die Version nicht abrufen. Bitte überprüfe die GitHub-URL!")
+    end
+end, "GET", "", {})
+
 RegisterNetEvent("breakin:attemptBreakIn")
 AddEventHandler("breakin:attemptBreakIn", function(houseIndex)
     local src = source
